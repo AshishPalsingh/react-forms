@@ -4,8 +4,20 @@ import ReactDOM from "react-dom/client";
 function UseForm() {
   const [name, setName] = useState("");
   const [lname, setLname] = useState("");
+  const [comments, setComment] = useState("These are the default comments!");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert("Welcome: " + name + " " + lname + " \nComments: " + comments);
+  };
+
+  const handleChange = (event) => {
+    //event.preventDefault();
+    setComment(event.target.value);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>
         Enter Firstname:
         <input
@@ -22,6 +34,9 @@ function UseForm() {
           onChange={(e) => setLname(e.target.value)}
         ></input>
       </label>
+      <input type="textarea" name={comments} onChange={handleChange} />
+
+      <input type="submit" />
     </form>
   );
 }
